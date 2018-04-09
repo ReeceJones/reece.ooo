@@ -8,3 +8,4 @@ Building the site is easy. Just open terminal and go to the base directory and e
 + vibe.d
 + jquery 3.3.1
 + animate.css
++ MongoDB
