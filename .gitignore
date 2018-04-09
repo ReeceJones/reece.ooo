@@ -12,3 +12,4 @@ website-test-*
 *.o
 *.obj
 *.lst
+*.dll
