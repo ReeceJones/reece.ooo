@@ -5,7 +5,7 @@ import blog.REST;
 shared static this()
 {
 	auto restSettings = new RestInterfaceSettings;
-	restSettings.baseURL = URL("http://localhost:8080/");
+	restSettings.baseURL = URL("http://192.168.179.129:8080/");
 
 	auto router = new URLRouter;
 	router.get("/test.js", serveRestJSClient!BlogAPI(restSettings));
@@ -14,7 +14,7 @@ shared static this()
 
 	auto settings = new HTTPServerSettings;
 	settings.port = 8080;
-	settings.bindAddresses = ["::1", "127.0.0.1"];
+	settings.bindAddresses = ["::1", "0.0.0.0"];
 	
 	listenHTTP(settings, router);
 }

@@ -9,3 +9,5 @@ Building the site is easy. Just open terminal and go to the base directory and e
 + jquery 3.3.1
 + animate.css
 + MongoDB
+# Install Notes
+I'm not exactly sure why, but make sure in the MongoDB config you have `bindIp` set to `0.0.0.0`.

@@ -6,8 +6,8 @@ import std.stdio: writeln;
 
 void start()
 {
-    conn = connectMongoDB("mongodb://localhost");
-    blogs = conn.getCollection("blogs");
+    conn = connectMongoDB("mongodb://192.168.179.129");
+    blogs = conn.getDatabase("blogs")["blogs"];
 }
 
 int getBlogNum()
@@ -28,7 +28,7 @@ BlogPost[] getPostsFromID(int id)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(int)doc["id"];
+        t.id = cast(double)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];

@@ -4,7 +4,7 @@ struct BlogPost
 {
     string date;
     string name;
-    int id;
+    double id;
     string desc;
     string content;
     string link;

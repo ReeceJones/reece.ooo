@@ -2,7 +2,7 @@ module handling.file;
 import vibe.core.path, vibe.http.server, vibe.http.fileserver, vibe.core.stream;
 import std.file, std.stdio, std.string;
 
-immutable string rootPath = "C:\\Users\\reece\\Documents\\ftp\\web\\public";
+immutable string rootPath = "/root/web/reece.ooo/public";
 
 void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
