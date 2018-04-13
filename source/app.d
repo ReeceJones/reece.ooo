@@ -1,9 +1,11 @@
 import vibe.d;
 import handling.file;
 import blog.REST;
+import defs;
 
 shared static this()
 {
+	loadConfig();
 	auto restSettings = new RestInterfaceSettings;
 	restSettings.baseURL = URL("http://192.168.179.129:8080/");
 
