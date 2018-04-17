@@ -7,7 +7,7 @@ shared static this()
 {
 	loadConfig();
 	auto restSettings = new RestInterfaceSettings;
-	restSettings.baseURL = URL("http://192.168.179.129:8080/");
+	restSettings.baseURL = URL("http://" ~ serverIP ~ ":8080");
 
 	auto router = new URLRouter;
 	router.get("/test.js", serveRestJSClient!BlogAPI(restSettings));

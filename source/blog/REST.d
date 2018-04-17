@@ -25,12 +25,12 @@ public:
         BlogPost[] blogs;
 	BlogPost tmp = {"never", "name", 0, "desc", "content", "link"};
 	blogs ~= tmp;
-        for (int i = n - 1; i < n; i++)
-        {
-            if (i < 0)
-                break;
-            blogs ~= getPostsFromID(i)[0];
-        }
-        return blogs;
-    };
+    for (int i = n - 1; i < n; i++)
+    {
+        if (i < 0)
+            break;
+        blogs ~= getPostsFromID(i)[0];
+    }
+    return blogs;
+    }
 }
