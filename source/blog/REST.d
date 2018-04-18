@@ -22,9 +22,7 @@ public:
         start();
         auto n = getBlogNum();
 	writeln("number of blogs: ", n);
-        BlogPost[] blogs;
-	BlogPost tmp = {"never", "name", 0, "desc", "content", "link"};
-	blogs ~= tmp;
+    BlogPost[] blogs;
     for (int i = n - 1; i < n; i++)
     {
         if (i < 0)

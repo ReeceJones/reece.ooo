@@ -3,7 +3,7 @@ import vibe.core.path, vibe.http.server, vibe.http.fileserver, vibe.core.stream,
 import std.file, std.stdio, std.string;
 import defs;
 import std.string: split;
-import blog.uri;
+import blog.uri, blog.post, blog.mongo;
 
 void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -25,6 +25,12 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     }
     else if (req.requestURI.blogURI == true)
     {
+        BlogPost post = getPostsFromName(getNameFromURI(req.requestURI))[0];
+        string name = post.name;
+        string description = post.desc;
+        string content = post.content;
+        res.render!("blog/blogfmt.dt",
+                    name, description, content);
         writeln("requested blog api");
     }
 }

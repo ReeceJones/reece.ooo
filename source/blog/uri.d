@@ -12,3 +12,9 @@ bool blogURI(string reqURI)
         return true;
     return false;
 }
+
+string getNameFromURI(string reqURI)
+{
+    string[] items = reqURI.split("/");
+    return items[2];
+}
