@@ -10,7 +10,7 @@ html(lang='en')
         link(href='/style/animate.css', rel='stylesheet')
         link(href='/style/style.css', rel='stylesheet')
         main
-            div(class='content animated fadeInUp')
+            div(class='content animated fadeInUp', style="top: 3%")
                 a(class='github', href='https://github.com/ReeceJones')
                     |="github"
                 a(class='pdf', href='https://reece.ooo/pdf')

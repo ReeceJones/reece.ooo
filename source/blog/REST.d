@@ -4,6 +4,7 @@ import vibe.web.rest;
 import blog.post;
 import blog.mongo;
 import std.stdio;
+import defs;
 
 
 @path("/api/")
@@ -23,10 +24,10 @@ public:
         auto n = getBlogNum();
 	writeln("number of blogs: ", n);
     BlogPost[] blogs;
-    for (int i = n - 1; i < n; i++)
+    for (int i = n - displayNumber; i < n; i++)
     {
         if (i < 0)
-            break;
+            continue;
         blogs ~= getPostsFromID(i)[0];
     }
     return blogs;
