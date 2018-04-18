@@ -8,8 +8,7 @@ import blog.uri, blog.post, blog.mongo;
 void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
     auto resolvedPath = resolvePath(req.requestURI[1..$]);
-    writeln("requested file: ", resolvedPath);
-    writeln("raw request: ", req.requestURI);
+    writeln("request: ", req.requestURI);
     string filePath = resolvedPath.toString;
     if (req.requestURI == "/")
     {
@@ -18,6 +17,10 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     else if (req.requestURI == "/blog/")
     {
         res.render!("blog/index.dt");
+    }
+    else if (req.requestURI == "/l")
+    {
+        res.render!("login.dt");
     }
     else if (filePath.exists == true)
     {

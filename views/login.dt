@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(http-equiv='X-UA-Compatible', content='ie=edge')
+        title REECE
+    body
+        link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
+        link(href='/style/animate.css', rel='stylesheet')
+        link(href='/style/style.css', rel='stylesheet')
+        main
+            div(class='content animated fadeInUp', style="top: 3%")
+                a(class='github', href='https://github.com/ReeceJones')
+                    |="github"
+                a(class='pdf', href='https://reece.ooo/pdf')
+                    |="pdfs"
+                a(class='blog', href='/blog/') 
+                    |="blog"
+                a(class='ide', href='https://reece.ooo/ide') 
+                    |="IDE"
+                div(class='content-body', id='content')
+                    h1(style='text-align: center; color:white') LOGIN
+                    form(action='/login', method='post')
+                        input(type='text', name='username', placeholder='username')
+                        br
+                        input(type='password', name='password', placeholder='password')
+                        br
+                        input(type='submit', value='submit')
