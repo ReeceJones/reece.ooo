@@ -1,7 +1,6 @@
 module auth.login;
 import std.stdio;
 import vibe.d;
-import scrypt;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -11,16 +10,22 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     
     //start a session
 	string username = req.form["username"];
+    string password = req.form["password"];
 	res.terminateSession();
     auto session = res.startSession();
     //have the username variable set in the session
     session.set("username", username);
 
-    //do any kind of authentification here
-    writeln("user " ~ username ~ " logged in");
+    if (username == "reece" && password == "password")
+    {
+        //do any kind of authentification here
+        writeln("user " ~ username ~ " logged in");
 
-    //go to the main page
-    res.redirect("/");
+        //go to the main page
+        res.redirect("/");
+    }
+    else
+        res.terminateSession();
 }
 
 void logout(HTTPServerRequest req, HTTPServerResponse res)

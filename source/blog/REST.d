@@ -19,10 +19,8 @@ class BlogAPI_impl : BlogAPI
 public:
     BlogPost[] getRecentBlogs()
     {
-	writeln("called");
         start();
         auto n = getBlogNum();
-	writeln("number of blogs: ", n);
     BlogPost[] blogs;
     for (int i = n - displayNumber; i < n; i++)
     {

@@ -8,8 +8,7 @@
 		"pz-config": {
 			"version": "~master",
 			"path": "../pz-config"
-		},
-		"scrypt": "~>0.0.1"
+		}
 	},
 	"description": "My personal website.",
 	"copyright": "Copyright © 2018, Reece Jones",
