@@ -3,10 +3,11 @@ import vibe.db.mongo.mongo;
 import blog.post;
 import std.conv: text;
 import std.stdio: writeln;
+import defs;
 
 void start()
 {
-    conn = connectMongoDB("mongodb://192.168.179.129");
+    conn = connectMongoDB("mongoIP");
     blogs = conn.getDatabase("blogs")["blogs"];
 }
 
@@ -77,6 +78,27 @@ BlogPost[] getPostsFromName(string name)
     }
     return ret;
 }
+
+//TODO: test to make sure this works
+// BlogPost[] queryDB(string field, string value)
+// {
+//     auto q = blogs.find(Bson([field : Bson(value)]));
+//     BlogPost[] ret;
+//     foreach(i, doc; q.byPair)
+//     {
+//         writeln(doc.toJson.toString);
+//         BlogPost t;
+//         t.date = cast(string)doc["date"];
+//         t.name = cast(string)doc["name"];
+//         t.id = cast(double)doc["id"];
+//         t.desc = cast(string)doc["desc"];
+//         t.content = cast(string)doc["content"];
+//         t.link = cast(string)doc["link"];
+//         //push into return array
+//         ret ~= t;
+//     }
+//     return ret;
+// }
 
 private
 {

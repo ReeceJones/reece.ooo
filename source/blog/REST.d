@@ -21,13 +21,13 @@ public:
     {
         start();
         auto n = getBlogNum();
-    BlogPost[] blogs;
-    for (int i = n - displayNumber; i < n; i++)
-    {
-        if (i < 0)
-            continue;
-        blogs ~= getPostsFromID(i)[0];
-    }
-    return blogs;
+        BlogPost[] blogs;
+        for (int i = n - displayNumber; i < n; i++)
+        {
+            if (i < 0)
+                continue;
+            blogs ~= getPostsFromID(i)[0];
+        }
+        return blogs;
     }
 }
