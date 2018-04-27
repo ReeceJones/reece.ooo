@@ -53,6 +53,7 @@ private
 {
     MongoClient conn;
     MongoCollection blogs;
+    //check if a password is the same as a hashed password
     bool validPWDHash(string rawPWD, string hashedPWD)
     {
         return isSameHash(toPassword(cast(char[])rawPWD), parseHash(hashedPWD));

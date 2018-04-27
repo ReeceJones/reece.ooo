@@ -8,23 +8,33 @@ import auth.login;
 
 shared static this()
 {
+	//load our settings
 	loadConfig();
+	//rest api settings
 	auto restSettings = new RestInterfaceSettings;
 	restSettings.baseURL = URL("http://" ~ serverIP ~ ":8080");
 
+	//url router setting
 	auto router = new URLRouter;
+	//get routes
+	//rest api
 	router.get("/test.js", serveRestJSClient!BlogAPI(restSettings));
 	router.get("*", &handleFilePath);
 
+	//auth routes
 	router.post("/login", &login);
 	router.post("/create", &create);
 	router.post("/logout", &logout);
 
+	//register the rest interface
 	router.registerRestInterface(new BlogAPI_impl, restSettings);
 
+	//server settings
 	auto settings = new HTTPServerSettings;
 	settings.port = 8080;
 	settings.bindAddresses = ["::1", "0.0.0.0"];
+	
+	//for sessions
 	settings.sessionStore = new MemorySessionStore;
 
 	listenHTTP(settings, router);
