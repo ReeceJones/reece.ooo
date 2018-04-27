@@ -5,6 +5,7 @@
 	],
 	"dependencies": {
 		"vibe-d": "~>0.8.3",
+		"dauth": "~>0.6.3",
 		"pz-config": {
 			"version": "~master",
 			"path": "../pz-config"
