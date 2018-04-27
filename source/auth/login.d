@@ -22,7 +22,8 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     {
         //do any kind of authentification here
         writeln("user " ~ username ~ " logged in\nisAdmin: " ~ userIsAdmin);
-
+        if (userIsAdmin)
+            session.set("isAdmin", "true");
         //go to the main page
         res.redirect("/");
     }
