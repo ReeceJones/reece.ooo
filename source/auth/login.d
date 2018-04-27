@@ -1,6 +1,7 @@
 module auth.login;
 import std.stdio;
 import vibe.d;
+import auth.mongo;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -16,10 +17,11 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     //have the username variable set in the session
     session.set("username", username);
 
-    if (username == "reece" && password == "password")
+    bool userIsAdmin;
+    if (checkPassword(username, password, userIsAdmin))
     {
         //do any kind of authentification here
-        writeln("user " ~ username ~ " logged in");
+        writeln("user " ~ username ~ " logged in\nisAdmin: " ~ userIsAdmin);
 
         //go to the main page
         res.redirect("/");

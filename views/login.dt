@@ -27,3 +27,10 @@ html(lang="en")
                         input(type='password', name='password', placeholder='password')
                         br
                         input(type='submit', value='submit')
+                    h1(style='text-align: center; color:white') CREATE
+                    form(action='/create', method='post')
+                        input(type='text', name='username', placeholder='username')
+                        br
+                        input(type='password', name='password', placeholder='password')
+                        br
+                        input(type='submit', value='submit')
