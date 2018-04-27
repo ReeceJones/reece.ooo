@@ -17,6 +17,7 @@ shared static this()
 	router.get("*", &handleFilePath);
 
 	router.post("/login", &login);
+	router.post("/create", &create);
 	router.post("/logout", &logout);
 
 	router.registerRestInterface(new BlogAPI_impl, restSettings);
