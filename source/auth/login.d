@@ -16,19 +16,18 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     auto session = res.startSession();
     //have the username variable set in the session
     session.set("username", username);
-
     bool userIsAdmin;
+    start();
     if (checkPassword(username, password, userIsAdmin))
     {
         //do any kind of authentification here
-        writeln("user " ~ username ~ " logged in\nisAdmin: " ~ userIsAdmin);
+        writeln("user " ~ username ~ " logged in\nisAdmin: " ~ text!bool(userIsAdmin));
         if (userIsAdmin)
             session.set("isAdmin", "true");
-        //go to the main page
-        res.redirect("/");
     }
     else
         res.terminateSession();
+    res.redirect("/");
 }
 
 void create(HTTPServerRequest req, HTTPServerResponse res)
@@ -40,6 +39,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
+    start();
     createUser(username, password);
     res.redirect("/");
 }

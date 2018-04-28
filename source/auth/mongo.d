@@ -17,7 +17,8 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
     auto q = blogs.find(Bson(["username" : Bson(usr)]));
     foreach (i, doc; q.byPair)
     {
-        if (validPWDHash(pwdRaw, cast(string)doc["password"]))
+        writeln(cast(string)doc["username"] ~ " : " ~ cast(string)doc["password"]);
+        if (isSameHash(toPassword(cast(char[])pwdRaw), parseHash(cast(string)doc["password"])))
         {
             auto isAdmin = cast(string)doc["admin"];
             admin = parse!bool(isAdmin);
@@ -30,6 +31,7 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
 void createUser(string user, string rawPWD)
 {
     string hashString = makeHash(toPassword(cast(char[])rawPWD)).toString();
+    writeln(hashString);
     //now just need to insert into mongo
     blogs.insert(Bson([
         "username"  : Bson(user),
@@ -53,9 +55,4 @@ private
 {
     MongoClient conn;
     MongoCollection blogs;
-    //check if a password is the same as a hashed password
-    bool validPWDHash(string rawPWD, string hashedPWD)
-    {
-        return isSameHash(toPassword(cast(char[])rawPWD), parseHash(hashedPWD));
-    }
 }

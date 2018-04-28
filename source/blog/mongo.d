@@ -7,7 +7,7 @@ import defs;
 
 void start()
 {
-    conn = connectMongoDB("mongoIP");
+    conn = connectMongoDB(mongoIP);
     blogs = conn.getDatabase("blogs")["blogs"];
 }
 
