@@ -28,6 +28,7 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     }
     else if (req.requestURI.blogURI == true)
     {
+        start();
         BlogPost post = getPostsFromName(getNameFromURI(req.requestURI))[0];
         string name = post.name;
         string description = post.desc;

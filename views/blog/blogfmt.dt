@@ -23,6 +23,8 @@ html(lang='en')
                     h1(style='text-align: center; color:white')
                         | #{name}
                     article
-                        | #{description}
+                        b
+                            | #{description}
+                    br
                     article
                         | #{content}
