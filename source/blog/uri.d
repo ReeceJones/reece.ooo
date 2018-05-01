@@ -7,7 +7,6 @@ import std.string: split;
 bool blogURI(string reqURI)
 {
     string[] items = reqURI.split("/");
-    writeln(items);
     if (items[1] == "blog" && items.length > 2)
         return true;
     return false;

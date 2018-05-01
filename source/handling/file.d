@@ -8,7 +8,6 @@ import blog.uri, blog.post, blog.mongo;
 void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
     auto resolvedPath = resolvePath(req.requestURI[1..$]);
-    writeln("request: ", req.requestURI);
     string filePath = resolvedPath.toString;
     if (req.requestURI == "/")
     {
@@ -22,7 +21,7 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     {
         res.render!("login.dt");
     }
-    else if (filePath.exists == true)
+    else if (filePath.exists == true || req.requestURI == "/v.mp4")
     {
         sendFile(req, res, resolvedPath);
     }
