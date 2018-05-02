@@ -22,10 +22,9 @@ html(lang='en')
                 a(class='ide', href='https://reece.ooo/ide') 
                     |="IDE"
                 div(class='content-body')
-                    - void injectHTML(string html)
-                        |#{html}
+                    h1(style='text-align: center; color:white') CONTROL PANEL
                     - if (isAdmin == true)
-                    - {
-                    -   injectHTML("USER IS ADMIN");
-                    - }
-                    h1 CONTROL PANEL
+                        h4(style='text-align: center; color: red; left: 50%; positon: relative;') USER IS ADMIN
+                    br
+                    a(href='/cp/post')
+                        |="Create new post"

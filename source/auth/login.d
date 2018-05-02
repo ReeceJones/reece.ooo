@@ -29,7 +29,7 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     }
     else
         res.terminateSession();
-    res.redirect("/");
+    res.redirect("/cp");
 }
 
 void create(HTTPServerRequest req, HTTPServerResponse res)
@@ -45,7 +45,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     writeln("password: " ~ password);
     start();
     createUser(username, password);
-    res.redirect("/");
+    res.redirect("/cp");
 }
 
 void logout(HTTPServerRequest req, HTTPServerResponse res)
