@@ -27,7 +27,7 @@ shared static this()
 	//auth routes
 	router.post("/login", &login);
 	router.post("/create", &create);
-	router.post("/logout", &logout);
+	router.get("/logout", &logout);
 
 	//register the rest interface
 	router.registerRestInterface(new BlogAPI_impl, restSettings);

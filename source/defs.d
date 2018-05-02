@@ -14,5 +14,5 @@ void loadConfig()
     rootPath = conf.getValue!string("publicPath");
     serverIP = conf.getValue!string("serverIP");
     displayNumber = conf.getValue!int("displayNumber");
-    mongoIP = "mongodb://" ~ serverIP;
+    mongoIP = "mongodb://" ~ conf.getValue!string("mongoIP");// ~ serverIP;
 }

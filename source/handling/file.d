@@ -4,6 +4,7 @@ import std.file, std.stdio, std.string;
 import defs;
 import std.string: split;
 import blog.uri, blog.post, blog.mongo;
+import std.conv: parse;
 
 void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -25,6 +26,13 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     if (filePath.exists == true)
     {
         sendFile(req, res, resolvedPath);
+    }
+    else if (req.requestURI == "/cp")
+    {
+        string s = req.session.get!string("isAdmin");
+        bool isAdmin = parse!bool(s);
+        writeln(s);
+        res.render!("usercp.dt", isAdmin);
     }
     else if (req.requestURI.blogURI == true)
     {

@@ -24,6 +24,8 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
         writeln("user " ~ username ~ " logged in\nisAdmin: " ~ text!bool(userIsAdmin));
         if (userIsAdmin)
             session.set("isAdmin", "true");
+        else
+            session.set("isAdmin", "false");
     }
     else
         res.terminateSession();
@@ -39,6 +41,8 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
+    writeln("username: " ~ username);
+    writeln("password: " ~ password);
     start();
     createUser(username, password);
     res.redirect("/");
