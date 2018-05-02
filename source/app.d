@@ -19,6 +19,9 @@ shared static this()
 	//get routes
 	//rest api
 	router.get("/test.js", serveRestJSClient!BlogAPI(restSettings));
+	router.get("/", staticTemplate!("index.dt"));
+	router.get("/blog", staticTemplate!("blog/index.dt"));
+	router.get("/l", staticTemplate!("login.dt"));
 	router.get("*", &handleFilePath);
 
 	//auth routes

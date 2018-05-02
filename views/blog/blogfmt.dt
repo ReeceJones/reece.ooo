@@ -9,6 +9,8 @@ html(lang='en')
         link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
         link(href='/style/animate.css', rel='stylesheet')
         link(href='/style/style.css', rel='stylesheet')
+        video(playsinline, autoplay, muted, loop, id='main-video')
+            source(src='/video.mp4', type='video/mp4')
         main
             div(class='content animated fadeInUp', style="top: 3%")
                 a(class='github', href='https://github.com/ReeceJones')

@@ -9,19 +9,20 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
     auto resolvedPath = resolvePath(req.requestURI[1..$]);
     string filePath = resolvedPath.toString;
-    if (req.requestURI == "/")
-    {
-        res.render!("index.dt");
-    }
-    else if (req.requestURI == "/blog/")
-    {
-        res.render!("blog/index.dt");
-    }
-    else if (req.requestURI == "/l")
-    {
-        res.render!("login.dt");
-    }
-    else if (filePath.exists == true || req.requestURI == "/v.mp4")
+    writeln(filePath);
+    // if (req.requestURI == "/")
+    // {
+    //     res.render!("index.dt");
+    // }
+    // else if (req.requestURI == "/blog/")
+    // {
+    //     res.render!("blog/index.dt");
+    // }
+    // else if (req.requestURI == "/l")
+    // {
+    //     res.render!("login.dt");
+    // }
+    if (filePath.exists == true)
     {
         sendFile(req, res, resolvedPath);
     }
