@@ -24,6 +24,8 @@ shared static this()
 	router.get("/blog/", staticTemplate!("blog.dt"));
 	router.get("/l", staticTemplate!("login.dt"));
 	router.get("/l/", staticTemplate!("login.dt"));
+	router.get("/cp/post", staticTemplate!("post.dt"));
+	router.get("/cp/post/", staticTemplate!("post.dt"));
 	router.get("*", &handleFilePath);
 
 	//auth routes

@@ -11,18 +11,7 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
     auto resolvedPath = resolvePath(req.requestURI[1..$]);
     string filePath = resolvedPath.toString;
     writeln(filePath);
-    // if (req.requestURI == "/")
-    // {
-    //     res.render!("index.dt");
-    // }
-    // else if (req.requestURI == "/blog/")
-    // {
-    //     res.render!("blog/index.dt");
-    // }
-    // else if (req.requestURI == "/l")
-    // {
-    //     res.render!("login.dt");
-    // }
+    //TODO: move these functions out of here
     if (filePath.exists == true)
     {
         sendFile(req, res, resolvedPath);
@@ -43,7 +32,6 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
         string content = post.content;
         res.render!("blog/blogfmt.dt",
                     name, description, content);
-        writeln("requested blog api");
     }
 }
 

@@ -31,7 +31,6 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
 void createUser(string user, string rawPWD)
 {
     string hashString = makeHash(toPassword(cast(char[])rawPWD)).toString();
-    writeln(hashString);
     //now just need to insert into mongo
     blogs.insert(Bson([
         "username"  : Bson(user),
