@@ -28,3 +28,6 @@ html(lang='en')
                     br
                     a(href='/cp/post')
                         |="Create new post"
+                    br
+                    a(href='/logout')
+                        |="Logout"

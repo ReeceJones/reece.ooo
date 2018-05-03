@@ -1,5 +1,7 @@
 import vibe.d;
 import handling.file;
+import handling.blog;
+import handling.cp;
 import blog.REST;
 import defs;
 import std.stdio;
@@ -18,7 +20,15 @@ shared static this()
 	auto router = new URLRouter;
 	//get routes
 	//rest api
-	router.get("/test.js", serveRestJSClient!BlogAPI(restSettings));
+
+	/*
+		REST INTERFACE
+	*/
+	router.get("/blog.js", serveRestJSClient!BlogAPI(restSettings));
+
+	/*
+		STATIC PAGES
+	*/
 	router.get("/", staticTemplate!("index.dt"));
 	router.get("/blog", staticTemplate!("blog.dt"));
 	router.get("/blog/", staticTemplate!("blog.dt"));
@@ -26,6 +36,19 @@ shared static this()
 	router.get("/l/", staticTemplate!("login.dt"));
 	router.get("/cp/post", staticTemplate!("post.dt"));
 	router.get("/cp/post/", staticTemplate!("post.dt"));
+
+	/*
+		HANDLERS
+	*/
+	//any blog post is redirected to the handler
+	router.get("/blog/*", &handleBlogRequest);
+	//any control panel request is redirected to the handler
+	router.get("/cp", &handleCPRequest);
+	router.get("/cp/", &handleCPRequest);
+
+	/*
+		DEFAULT PATH
+	*/
 	router.get("*", &handleFilePath);
 
 	//auth routes
