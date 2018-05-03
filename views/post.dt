@@ -23,3 +23,11 @@ html(lang='en')
                     |="IDE"
                 div(class='content-body')
                     h1(style='text-align: center; color:white') CREATE POST
+                    form(action='/newPost', method='post')
+                        input(type='text', name='title', placeholder='title')
+                        br
+                        input(type='text', name='description', placeholder='description')
+                        br
+                        textarea(name='body', placeholder='body', cols='70', rows='20')
+                        br
+                        input(type='submit', value='submit')
