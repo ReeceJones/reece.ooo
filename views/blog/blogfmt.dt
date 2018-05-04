@@ -28,5 +28,4 @@ html(lang='en')
                         b
                             | #{description}
                     br
-                    article
-                        | #{content}
+                    article!= content

@@ -30,7 +30,7 @@ BlogPost[] getPostsFromID(int id)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(double)doc["id"];
+        t.id = cast(int)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
@@ -61,7 +61,7 @@ BlogPost[] getPostsFromName(string name)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(double)doc["id"];
+        t.id = cast(int)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
@@ -77,6 +77,50 @@ BlogPost[] getPostsFromName(string name)
         */
     }
     return ret;
+}
+
+BlogPost[] getPostsFromLink(string link)
+{
+    auto q = blogs.find(Bson(["link" : Bson(link)]));
+        BlogPost[] ret;
+    foreach (i, doc; q.byPair)
+    {
+        //for debugging
+        writeln(doc.toJson.toString);
+        //create a blogpost object using the query
+        BlogPost t;
+        //retrieve the items from the bson
+        t.date = cast(string)doc["date"];
+        t.name = cast(string)doc["name"];
+        t.id = cast(int)doc["id"];
+        t.desc = cast(string)doc["desc"];
+        t.content = cast(string)doc["content"];
+        t.link = cast(string)doc["link"];
+        //push into return array
+        ret ~= t;
+        /*
+            string date;
+            string name;
+            int id;
+            string desc;
+            string content;
+            string link;
+        */
+    }
+    return ret;
+}
+
+//id is not needed, it will auto increment
+void createPost(BlogPost bp)
+{
+    blogs.insert(Bson([
+        "date" : Bson(bp.date),
+        "name" : Bson(bp.name),
+        "id"   : Bson(getBlogNum()),
+        "desc" : Bson(bp.desc),
+        "content" : Bson(bp.content),
+        "link" : Bson(bp.link)
+    ]));
 }
 
 //TODO: test to make sure this works

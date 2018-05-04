@@ -51,10 +51,17 @@ shared static this()
 	*/
 	router.get("*", &handleFilePath);
 
-	//auth routes
+	/*
+		AUTH ROUTES
+	*/
 	router.post("/login", &login);
 	router.post("/create", &create);
 	router.get("/logout", &logout);
+
+	/*
+		BLOG ROUTES
+	*/
+	router.post("/new_post", &createBlogPost);
 
 	//register the rest interface
 	router.registerRestInterface(new BlogAPI_impl, restSettings);

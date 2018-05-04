@@ -24,4 +24,3 @@ auto resolvePath(string req)
 {
     return NativePath(rootPath ~ req);
 }
-

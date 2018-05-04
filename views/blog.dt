@@ -20,7 +20,7 @@ html(lang="en")
                 r.forEach(function(item, index, array)
                 {
                     //add the blogs
-                    node.innerHTML += '<article><a href=\"/blog/' + item.name + '\">' + item.name + '</a>'
+                    node.innerHTML += '<article><a href=\"/blog/' + item.link + '\">' + item.name + '</a>'
                         + '<br>'
                         + item.desc
                         + '</article>'

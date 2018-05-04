@@ -6,6 +6,8 @@ import blog.mongo;
 import std.stdio;
 import defs;
 
+import blog.input;
+
 
 @path("/api/")
 interface BlogAPI
@@ -22,11 +24,14 @@ public:
         start();
         auto n = getBlogNum();
         BlogPost[] blogs;
-        for (int i = n - displayNumber; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
-            if (i < 0)
+            //2 - 0 - 1
+            //2 - 1 - 1
+            writeln(n - i - 1);
+            if (n - i - 1 < 0)
                 continue;
-            blogs ~= getPostsFromID(i)[0];
+            blogs ~= getPostsFromID(n - i - 1)[0];
         }
         return blogs;
     }
