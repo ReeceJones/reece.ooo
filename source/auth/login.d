@@ -36,13 +36,19 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //make sure to check that a username and a password were supplied
     enforceHTTP("username" in req.form && "password" in req.form,
 	 	HTTPStatus.badRequest, "Missing username/password field.");
-    
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
     start();
-    createUser(username, password);
-    res.redirect("/cp");
+    if (createUser(username, password) == false)
+        res.redirect("/l");
+    else
+    {
+        auto session = res.startSession();
+        session.set("username", username);
+        session.set("isAdmin", "false");
+        res.redirect("/cp");
+    }
 }
 
 void logout(HTTPServerRequest req, HTTPServerResponse res)

@@ -28,8 +28,12 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
     return false;
 }
 
-void createUser(string user, string rawPWD)
+bool createUser(string user, string rawPWD)
 {
+    bool exists = !blogs.find(Bson(["username" : Bson(user)])).empty;
+    //could not create user
+    if (exists == true)
+        return false;
     string hashString = makeHash(toPassword(cast(char[])rawPWD)).toString();
     //now just need to insert into mongo
     blogs.insert(Bson([
@@ -37,6 +41,7 @@ void createUser(string user, string rawPWD)
         "password"  : Bson(hashString),
         "admin"     : Bson("false")
     ]));
+    return true;
 }  
 
 void updateUserPWD(string user, string newPWD)
