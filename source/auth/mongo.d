@@ -42,7 +42,7 @@ bool createUser(string user, string rawPWD)
         "admin"     : Bson("false")
     ]));
     return true;
-}  
+}
 
 void updateUserPWD(string user, string newPWD)
 {
