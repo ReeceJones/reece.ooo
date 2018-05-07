@@ -40,7 +40,9 @@ void createBlogPost(HTTPServerRequest req, HTTPServerResponse res)
         }
         //posts are autoincremented
         BlogPost bp = {date, name, 0, desc, content, link};
-        inputUserData(bp);
-        res.redirect("blog/" ~ link);
+        if (inputUserData(bp))
+            res.redirect("blog/" ~ link);
+        else
+            res.redirect("cp/create");
     }
 }

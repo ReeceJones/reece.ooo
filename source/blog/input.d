@@ -2,8 +2,8 @@ module blog.input;
 import blog.mongo;
 import blog.post;
 
-void inputUserData(BlogPost bp)
+bool inputUserData(BlogPost bp)
 {
     start();
-    createPost(bp);
+    return createPost(bp);
 }

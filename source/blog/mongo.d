@@ -86,7 +86,7 @@ BlogPost[] getPostsFromLink(string link)
     foreach (i, doc; q.byPair)
     {
         //for debugging
-        writeln(doc.toJson.toString);
+        //writeln(doc.toJson.toString);
         //create a blogpost object using the query
         BlogPost t;
         //retrieve the items from the bson
@@ -111,8 +111,12 @@ BlogPost[] getPostsFromLink(string link)
 }
 
 //id is not needed, it will auto increment
-void createPost(BlogPost bp)
+bool createPost(BlogPost bp)
 {
+    bool exists = !blogs.find(Bson(["name" : Bson(bp.name)])).empty;
+    //could not create user
+    if (exists == true)
+        return false;
     blogs.insert(Bson([
         "date" : Bson(bp.date),
         "name" : Bson(bp.name),
@@ -121,6 +125,7 @@ void createPost(BlogPost bp)
         "content" : Bson(bp.content),
         "link" : Bson(bp.link)
     ]));
+    return true;
 }
 
 //TODO: test to make sure this works
