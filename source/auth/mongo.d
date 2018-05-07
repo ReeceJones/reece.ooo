@@ -2,7 +2,6 @@ module auth.mongo;
 import vibe.db.mongo.mongo;
 import blog.post;
 import std.conv: text, parse;
-import std.stdio: writeln;
 import defs;
 import dauth;
 
@@ -17,7 +16,6 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
     auto q = blogs.find(Bson(["username" : Bson(usr)]));
     foreach (i, doc; q.byPair)
     {
-        writeln(cast(string)doc["username"] ~ " : " ~ cast(string)doc["password"]);
         if (isSameHash(toPassword(cast(char[])pwdRaw), parseHash(cast(string)doc["password"])))
         {
             auto isAdmin = cast(string)doc["admin"];
