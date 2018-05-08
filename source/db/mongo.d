@@ -28,7 +28,7 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
     return false;
 }
 
-bool createUser(string user, string rawPWD)
+bool createUser(string user, string rawPWD, string isAdmin)
 {
     bool exists = !users.find(Bson(["username" : Bson(user)])).empty;
     //could not create user
@@ -39,7 +39,7 @@ bool createUser(string user, string rawPWD)
     users.insert(Bson([
         "username"  : Bson(user),
         "password"  : Bson(hashString),
-        "admin"     : Bson("false")
+        "admin"     : Bson(isAdmin)
     ]));
     return true;
 }

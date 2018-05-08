@@ -6,7 +6,7 @@ import std.conv: parse;
 void handleCPRequest(HTTPServerRequest req, HTTPServerResponse res)
 {
     if (!req.session)
-        res.redirect("/");
+        res.redirect("/login");
     else
     {
         string s = req.session.get!string("isAdmin");

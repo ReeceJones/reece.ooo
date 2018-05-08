@@ -39,14 +39,15 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
+    string isAdmin = "false";
     start();
-    if (createUser(username, password) == false)
+    if (createUser(username, password, isAdmin) == false)
         res.redirect("/l");
     else
     {
         auto session = res.startSession();
         session.set("username", username);
-        session.set("isAdmin", "false");
+        session.set("isAdmin", isAdmin);
         res.redirect("/cp");
     }
 }
