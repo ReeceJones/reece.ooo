@@ -32,8 +32,10 @@ shared static this()
 	router.get("/", staticTemplate!("index.dt"));
 	router.get("/blog", staticTemplate!("blog.dt"));
 	router.get("/blog/", staticTemplate!("blog.dt"));
-	router.get("/l", staticTemplate!("login.dt"));
-	router.get("/l/", staticTemplate!("login.dt"));
+	router.get("/login", staticTemplate!("login.dt"));
+	router.get("/login/", staticTemplate!("login.dt"));
+	router.get("/create", staticTemplate!("create.dt"));
+	router.get("/create/", staticTemplate!("create.dt"));
 	router.get("/cp/post", staticTemplate!("post.dt"));
 	router.get("/cp/post/", staticTemplate!("post.dt"));
 

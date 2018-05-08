@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset='UTF-8')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
         meta(http-equiv='X-UA-Compatible', content='ie=edge')
-        title LOGIN
+        title CREATE
     body
         link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
         link(href='/style/animate.css', rel='stylesheet')
@@ -22,8 +22,8 @@ html(lang="en")
                 a(class='ide', href='https://reece.ooo/ide') 
                     |="IDE"
                 div(class='content-body', id='content')
-                    h1(style='text-align: center; color:white') LOGIN
-                    form(action='/login', method='post')
+                    h1(style='text-align: center; color:white') CREATE
+                    form(action='/create', method='post')
                         input(type='text', name='username', placeholder='username')
                         br
                         input(type='password', name='password', placeholder='password')
