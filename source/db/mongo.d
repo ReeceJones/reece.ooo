@@ -9,13 +9,13 @@ import dauth;
 void start()
 {
     conn = connectMongoDB(mongoIP);
-    users = conn.getDatabase("auth")["users"];
-    blogs = conn.getDatabase("blogs")["blogs"];
+    users = conn.getCollection("auth.users");
+    blogs = conn.getCollection("blogs.blogs");
 }
 
 bool checkPassword(string usr, string pwdRaw, out bool admin)
 {
-    auto q = blogs.find(Bson(["username" : Bson(usr)]));
+    auto q = users.find(Bson(["username" : Bson(usr)]));
     foreach (i, doc; q.byPair)
     {
         if (isSameHash(toPassword(cast(char[])pwdRaw), parseHash(cast(string)doc["password"])))
@@ -30,13 +30,13 @@ bool checkPassword(string usr, string pwdRaw, out bool admin)
 
 bool createUser(string user, string rawPWD)
 {
-    bool exists = !blogs.find(Bson(["username" : Bson(user)])).empty;
+    bool exists = !users.find(Bson(["username" : Bson(user)])).empty;
     //could not create user
     if (exists == true)
         return false;
     string hashString = makeHash(toPassword(cast(char[])rawPWD)).toString();
     //now just need to insert into mongo
-    blogs.insert(Bson([
+    users.insert(Bson([
         "username"  : Bson(user),
         "password"  : Bson(hashString),
         "admin"     : Bson("false")
@@ -47,7 +47,7 @@ bool createUser(string user, string rawPWD)
 void updateUserPWD(string user, string newPWD)
 {
     string hashString = makeHash(toPassword(cast(char[])newPWD)).toString();
-    blogs.update(Bson(
+    users.update(Bson(
         ["username"  : Bson(user)]
     ),
     Bson(
@@ -78,14 +78,6 @@ BlogPost[] getPostsFromID(int id)
         t.link = cast(string)doc["link"];
         //push into return array
         ret ~= t;
-        /*
-            string date;
-            string name;
-            int id;
-            string desc;
-            string content;
-            string link;
-        */
     }
     return ret;
 }
@@ -107,14 +99,6 @@ BlogPost[] getPostsFromName(string name)
         t.link = cast(string)doc["link"];
         //push into return array
         ret ~= t;
-        /*
-            string date;
-            string name;
-            int id;
-            string desc;
-            string content;
-            string link;
-        */
     }
     return ret;
 }
@@ -136,14 +120,6 @@ BlogPost[] getPostsFromLink(string link)
         t.link = cast(string)doc["link"];
         //push into return array
         ret ~= t;
-        /*
-            string date;
-            string name;
-            int id;
-            string desc;
-            string content;
-            string link;
-        */
     }
     return ret;
 }
@@ -165,27 +141,6 @@ bool createPost(BlogPost bp)
     ]));
     return true;
 }
-
-//TODO: test to make sure this works
-// BlogPost[] queryDB(string field, string value)
-// {
-//     auto q = blogs.find(Bson([field : Bson(value)]));
-//     BlogPost[] ret;
-//     foreach(i, doc; q.byPair)
-//     {
-//         writeln(doc.toJson.toString);
-//         BlogPost t;
-//         t.date = cast(string)doc["date"];
-//         t.name = cast(string)doc["name"];
-//         t.id = cast(double)doc["id"];
-//         t.desc = cast(string)doc["desc"];
-//         t.content = cast(string)doc["content"];
-//         t.link = cast(string)doc["link"];
-//         //push into return array
-//         ret ~= t;
-//     }
-//     return ret;
-// }
 
 private
 {
