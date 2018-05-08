@@ -11,7 +11,6 @@ void handleFilePath(HTTPServerRequest req, HTTPServerResponse res)
 {
     auto resolvedPath = resolvePath(req.requestURI[1..$]);
     string filePath = resolvedPath.toString;
-    writeln(filePath);
     if (filePath.exists == true)
     {
         sendFile(req, res, resolvedPath);

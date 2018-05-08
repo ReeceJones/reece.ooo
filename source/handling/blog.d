@@ -15,7 +15,6 @@ void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
     string name = post.name;
     string description = post.desc;
     string content = filterMarkdown(post.content);
-    writeln(content);
     res.render!("blog/blogfmt.dt",
                 name, description, content);
 }
@@ -43,6 +42,6 @@ void createBlogPost(HTTPServerRequest req, HTTPServerResponse res)
         if (inputUserData(bp))
             res.redirect("blog/" ~ link);
         else
-            res.redirect("cp/create");
+            res.redirect("cp/post");
     }
 }

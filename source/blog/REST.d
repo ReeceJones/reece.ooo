@@ -28,7 +28,6 @@ public:
         {
             //2 - 0 - 1
             //2 - 1 - 1
-            writeln(n - i - 1);
             if (n - i - 1 < 0)
                 continue;
             blogs ~= getPostsFromID(n - i - 1)[0];

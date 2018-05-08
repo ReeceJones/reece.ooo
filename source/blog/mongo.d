@@ -2,7 +2,6 @@ module blog.mongo;
 import vibe.db.mongo.mongo;
 import blog.post;
 import std.conv: text;
-import std.stdio: writeln;
 import defs;
 
 void start()
@@ -23,8 +22,6 @@ BlogPost[] getPostsFromID(int id)
     BlogPost[] ret;
     foreach (i, doc; q.byPair)
     {
-        //for debugging
-        writeln(doc.toJson.toString);
         //create a blogpost object using the query
         BlogPost t;
         //retrieve the items from the bson
@@ -54,8 +51,6 @@ BlogPost[] getPostsFromName(string name)
         BlogPost[] ret;
     foreach (i, doc; q.byPair)
     {
-        //for debugging
-        writeln(doc.toJson.toString);
         //create a blogpost object using the query
         BlogPost t;
         //retrieve the items from the bson
@@ -85,8 +80,6 @@ BlogPost[] getPostsFromLink(string link)
         BlogPost[] ret;
     foreach (i, doc; q.byPair)
     {
-        //for debugging
-        //writeln(doc.toJson.toString);
         //create a blogpost object using the query
         BlogPost t;
         //retrieve the items from the bson
