@@ -1,7 +1,7 @@
 module handling.blog;
 
 import blog.uri;
-import blog.mongo;
+import db.mongo;
 import blog.post;
 import vibe.http.server;    
 import vibe.textfilter.markdown;

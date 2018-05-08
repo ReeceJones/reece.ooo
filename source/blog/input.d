@@ -1,5 +1,5 @@
 module blog.input;
-import blog.mongo;
+import db.mongo;
 import blog.post;
 
 bool inputUserData(BlogPost bp)

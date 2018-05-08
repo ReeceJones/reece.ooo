@@ -2,7 +2,7 @@ module blog.REST;
 
 import vibe.web.rest;
 import blog.post;
-import blog.mongo;
+import db.mongo;
 import std.stdio;
 import defs;
 

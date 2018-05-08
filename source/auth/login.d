@@ -1,7 +1,7 @@
 module auth.login;
 import std.stdio;
 import vibe.d;
-import auth.mongo;
+import db.mongo;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
