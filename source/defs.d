@@ -7,6 +7,7 @@ string rootPath;
 string serverIP;
 int displayNumber;
 string mongoIP;
+string chainPath, keyPath;
 
 void loadConfig()
 {
@@ -15,4 +16,6 @@ void loadConfig()
     serverIP = conf.getValue!string("serverIP");
     displayNumber = conf.getValue!int("displayNumber");
     mongoIP = "mongodb://" ~ conf.getValue!string("mongoIP");// ~ serverIP;
+    chainPath = conf.getValue!string("SSLCertificateChainFile");
+    keyPath = conf.getValue!string("SSLPrivateKeyFile");
 }

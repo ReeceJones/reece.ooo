@@ -70,8 +70,20 @@ shared static this()
 
 	//server settings
 	auto settings = new HTTPServerSettings;
-	settings.port = 8080;
-	settings.bindAddresses = ["::1", "0.0.0.0"];
+	if (keyPath !is null)
+	{
+		settings.port = 443;
+		settings.bindAddresses = ["::1", "0.0.0.0"];
+		settings.tlsContext = createTLSContext(TLSContextKind.server);
+		settings.tlsContext.useCertificateChainFile(chainPath);
+		settings.tlsContext.usePrivateKeyFile(keyPath);
+		settings.hostName = "reece.ooo";
+	}
+	else
+	{
+		settings.port = 8080;
+		settings.bindAddresses = ["::1", "0.0.0.0"];
+	}
 	
 	//for sessions
 	settings.sessionStore = new MemorySessionStore;
