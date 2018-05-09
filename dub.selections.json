@@ -12,7 +12,6 @@
 		"libevent": "2.0.2+2.0.16",
 		"memutils": "0.4.10",
 		"openssl": "1.1.6+1.0.1g",
-		"pubg-d": "0.8.1",
 		"pz-config": {"path":"../pz-config"},
 		"scrypt": "0.0.1",
 		"secured": "1.0.0",

@@ -5,16 +5,11 @@
 	],
 	"dependencies": {
 		"vibe-d": "~>0.8.3",
-		"vibe-d:tls": "*",
 		"dauth": "~>0.6.3",
-		"pubg-d": "~>0.8.1",
 		"pz-config": {
 			"version": "~master",
 			"path": "../pz-config"
 		}
-	},
-	"subConfigurations": {
-		"vibe-d:tls": "openssl"
 	},
 	"description": "My personal website.",
 	"copyright": "Copyright © 2018, Reece Jones",
