@@ -15,7 +15,7 @@ html(lang='en')
             div(class='title animated fadeInDown') 
                 b REECE JONES
             div(class='subtitle animated fadeInDown') 
-                b LOWLEVEL DEVELOPER
+                b SOME COOL PHRASE
             div(class='content animated fadeInUp')
                 a(class='github', href='https://github.com/ReeceJones')
                     |="github"

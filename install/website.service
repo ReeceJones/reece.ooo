@@ -1,0 +1,17 @@
+[Unit]
+Description=REEEEEEEEEEEEEEEEEE NORMIESSSSSSS
+After=auditd.service systemd-user-sessions.service time-sync.target
+
+[Service]
+User=root
+TimeoutStartSec=0
+Type=simple
+KillMode=process
+WorkingDirectory=/etc/vibe/reece.ooo/
+ExecStart=/etc/vibe/reece.ooo/website
+Restart=always
+RestartSec=2
+LimitNOFILE=5555
+
+[Install]
+WantedBy=multi-user.target

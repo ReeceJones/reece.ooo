@@ -73,11 +73,11 @@ shared static this()
 	settings.port = 443;
 	settings.bindAddresses = ["::1", "0.0.0.0"];
 	settings.tlsContext = createTLSContext(TLSContextKind.server);
-	settings.tlsContext.useCertificateChainFile("/etc/letsencrypt/live/reece.ooo/cert.pem");
-	settings.tlsContext.usePrivateKeyFile("/etc/letsencrypt/live/reece.ooo/privkey.pem");
+	settings.tlsContext.useCertificateChainFile("/etc/letsencrypt/live/reece.ooo-0001/cert.pem");
+	settings.tlsContext.usePrivateKeyFile("/etc/letsencrypt/live/reece.ooo-0001/privkey.pem");
 	settings.hostName = "reece.ooo";
 	//for sessions
 	settings.sessionStore = new MemorySessionStore;
 
-	listenHTTP(settings, router);
+listenHTTP(settings, router);
 }
