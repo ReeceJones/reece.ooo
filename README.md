@@ -10,3 +10,4 @@ Building the site is easy. Just open terminal and go to the base directory and e
 + MongoDB
 # Install Notes
 I'm not exactly sure why, but make sure in the MongoDB config you have `bindIp` set to `0.0.0.0`.
+Also move `website.service` to `/usr/lib/systemd/system/`
