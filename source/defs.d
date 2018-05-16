@@ -7,6 +7,7 @@ string rootPath;
 string serverIP;
 int displayNumber;
 string mongoIP;
+string userAdmin;
 
 void loadConfig()
 {
@@ -15,4 +16,5 @@ void loadConfig()
     serverIP = conf.getValue!string("serverIP");
     displayNumber = conf.getValue!int("displayNumber");
     mongoIP = "mongodb://" ~ conf.getValue!string("mongoIP");// ~ serverIP;
+    userAdmin = conf.getValue!string("userAdmin");
 }

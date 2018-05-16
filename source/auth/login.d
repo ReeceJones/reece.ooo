@@ -2,6 +2,7 @@ module auth.login;
 import std.stdio;
 import vibe.d;
 import db.mongo;
+import defs;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -39,7 +40,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
-    string isAdmin = "false";
+    string isAdmin = username == userAdmin ? "true" : "false";
     start();
     if (createUser(username, password, isAdmin) == false)
         res.redirect("/l");
