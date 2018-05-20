@@ -14,7 +14,7 @@ shared static this()
 	loadConfig();
 	//rest api settings
 	auto restSettings = new RestInterfaceSettings;
-	restSettings.baseURL = URL("http://" ~ serverIP ~ ":8080");
+	restSettings.baseURL = URL("https://" ~ serverIP);
 
 	//url router setting
 	auto router = new URLRouter;
