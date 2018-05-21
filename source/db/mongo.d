@@ -63,7 +63,7 @@ int getBlogNum()
 //TODO: make querying more modularized
 BlogPost[] getPostsFromID(int id)
 {
-    auto q = blogs.find(Bson(["id" : Bson(id)]));
+    auto q = blogs.find(Bson(["id" : Bson(cast(double)id)]));
     BlogPost[] ret;
     foreach (i, doc; q.byPair)
     {
@@ -72,7 +72,7 @@ BlogPost[] getPostsFromID(int id)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(int)doc["id"];
+        t.id = cast(double)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
@@ -93,7 +93,7 @@ BlogPost[] getPostsFromName(string name)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(int)doc["id"];
+        t.id = cast(double)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
@@ -114,7 +114,7 @@ BlogPost[] getPostsFromLink(string link)
         //retrieve the items from the bson
         t.date = cast(string)doc["date"];
         t.name = cast(string)doc["name"];
-        t.id = cast(int)doc["id"];
+        t.id = cast(double)doc["id"];
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
@@ -134,7 +134,7 @@ bool createPost(BlogPost bp)
     blogs.insert(Bson([
         "date" : Bson(bp.date),
         "name" : Bson(bp.name),
-        "id"   : Bson(getBlogNum()),
+        "id"   : Bson(cast(double)getBlogNum()),
         "desc" : Bson(bp.desc),
         "content" : Bson(bp.content),
         "link" : Bson(bp.link)
