@@ -70,12 +70,8 @@ shared static this()
 
 	//server settings
 	auto settings = new HTTPServerSettings;
-	settings.port = 443;
+	settings.port = 9001;
 	settings.bindAddresses = ["::1", "0.0.0.0"];
-	settings.tlsContext = createTLSContext(TLSContextKind.server);
-	settings.tlsContext.useCertificateChainFile("/etc/letsencrypt/live/reece.ooo-0001/cert.pem");
-	settings.tlsContext.usePrivateKeyFile("/etc/letsencrypt/live/reece.ooo-0001/privkey.pem");
-	settings.hostName = "reece.ooo";
 	//for sessions
 	settings.sessionStore = new MemorySessionStore;
 
