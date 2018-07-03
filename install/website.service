@@ -1,5 +1,5 @@
 [Unit]
-Description=REEEEEEEEEEEEEEEEEE NORMIESSSSSSS
+Description=reece.ooo website
 After=auditd.service systemd-user-sessions.service time-sync.target
 
 [Service]
