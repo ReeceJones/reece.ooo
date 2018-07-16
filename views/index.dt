@@ -19,9 +19,5 @@ html(lang='en')
             div(class='content animated fadeInUp')
                 a(class='github', href='https://github.com/ReeceJones')
                     |="github"
-                a(class='pdf', href='https://reece.ooo/pdf')
-                    |="pdfs"
                 a(class='blog', href='/blog/') 
                     |="blog"
-                a(class='ide', href='https://reece.ooo/ide') 
-                    |="IDE"
