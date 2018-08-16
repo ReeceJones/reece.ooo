@@ -40,7 +40,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
-    string isAdmin = username == userAdmin ? "true" : "false";
+    string isAdmin = username == userAdmin;
     start();
     if (createUser(username, password, isAdmin) == false)
         res.redirect("/l");
