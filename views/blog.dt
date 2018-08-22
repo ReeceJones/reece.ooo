@@ -12,28 +12,6 @@ html(lang="en")
         video(playsinline, autoplay, muted, loop, id='main-video')
             source(src='/video.mp4', type='video/mp4')
         script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=', crossorigin='anonymous')
-        script(src='/blog.js')
-        :javascript
-            BlogAPI.getRecentBlogs(
-            function(r) {
-                var node = document.getElementById('content-blog');
-                r.forEach(function(item, index, array)
-                {
-                    //add the blogs
-                    node.innerHTML += '<article><a href=\"/blog/' + item.link + '\">' + item.name + '</a>'
-                        + '<br>'
-                        + item.desc
-                        + '</article>'
-                        + '<br>';
-                });
-                //trigger the animation for the blog
-                $("#content-blog").addClass("animated fadeInUp");
-            });
-        article
-            - foreach(post; blogs)
-                a(href="\"/blog/" ~ post.link ~ "\"")= post.name
-                br
-                |= post.desc
         main
             div(class='content animated fadeInUp', style="top: 3%")
                 a(class='github', href='https://github.com/ReeceJones')
@@ -43,3 +21,8 @@ html(lang="en")
                 div(class='content-body', id='content')
                     h1(style='text-align: center; color:white') BLOG
                     #content-blog
+                        article
+                            - foreach(post; blogs)
+                                a(href="\"/blog/" ~ post.link ~ "\"")= post.name
+                                br
+                                |= post.desc
