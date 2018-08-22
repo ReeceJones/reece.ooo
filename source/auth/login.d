@@ -3,6 +3,7 @@ import std.stdio;
 import vibe.d;
 import db.mongo;
 import defs;
+import std.string;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -40,7 +41,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
-    string isAdmin = username == userAdmin;
+    string isAdmin = text!bool(username == userAdmin);
     start();
     if (createUser(username, password, isAdmin) == false)
         res.redirect("/l");

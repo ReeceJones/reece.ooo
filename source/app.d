@@ -30,8 +30,8 @@ shared static this()
 		STATIC PAGES
 	*/
 	router.get("/", staticTemplate!("index.dt"));
-	router.get("/blog", staticTemplate!("blog.dt"));
-	router.get("/blog/", staticTemplate!("blog.dt"));
+	// router.get("/blog", staticTemplate!("blog.dt"));
+	// router.get("/blog/", staticTemplate!("blog.dt"));
 	router.get("/login", staticTemplate!("login.dt"));
 	router.get("/login/", staticTemplate!("login.dt"));
 	router.get("/create", staticTemplate!("create.dt"));
@@ -42,6 +42,8 @@ shared static this()
 	/*
 		HANDLERS
 	*/
+	router.get("/blog", &handleBlogIndex);
+	router.get("/blog/", &handleBlogIndex);
 	//any blog post is redirected to the handler
 	router.get("/blog/*", &handleBlogRequest);
 	//any control panel request is redirected to the handler

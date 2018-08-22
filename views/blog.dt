@@ -29,6 +29,11 @@ html(lang="en")
                 //trigger the animation for the blog
                 $("#content-blog").addClass("animated fadeInUp");
             });
+        article
+            - foreach(post; blogs)
+                a(href="\"/blog/" ~ post.link ~ "\"")= post.name
+                br
+                |= post.desc
         main
             div(class='content animated fadeInUp', style="top: 3%")
                 a(class='github', href='https://github.com/ReeceJones')

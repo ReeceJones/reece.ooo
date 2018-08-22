@@ -19,6 +19,13 @@ void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
                 name, description, content);
 }
 
+void handleBlogIndex(HTTPServerRequest req, HTTPServerResponse res)
+{
+    import blog.REST;
+    BlogPost[] blogs = getRecentBlogs();
+    res.render!("blog.dt", blogs);
+}
+
 void createBlogPost(HTTPServerRequest req, HTTPServerResponse res)
 {
     if (!req.session)
