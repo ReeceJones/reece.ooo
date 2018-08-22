@@ -23,6 +23,6 @@ html(lang="en")
                     #content-blog
                         article
                             - foreach(post; blogs)
-                                a(href="\"/blog/" ~ post.link ~ "\"")= post.name
+                                a(href="/blog/" ~ post.link)= post.name
                                 br
                                 |= post.desc
