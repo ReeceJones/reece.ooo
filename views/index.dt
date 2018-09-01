@@ -7,6 +7,7 @@ html(lang='en')
         title REECE
     body
         link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Rock+Salt', rel='stylesheet')
         link(href='/style/animate.css', rel='stylesheet')
         link(href='/style/style.css', rel='stylesheet')
         video(playsinline, autoplay, muted, loop, id='main-video')

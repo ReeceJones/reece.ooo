@@ -20,10 +20,11 @@ body {
     text-align: center;
 }
 .title {
-    font-size: 140px;
+    font-size: 100px;
     position: relative;
     top: 30%;
     color:limegreen;
+    font-family: 'Rock Salt', cursive;
 }
 .subtitle {
     font-size: 40px;
