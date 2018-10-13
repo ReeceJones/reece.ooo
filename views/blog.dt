@@ -18,6 +18,8 @@ html(lang="en")
                     |="github"
                 a(class='blog', href='/blog/') 
                     |="blog"
+                a(class='login', href='/login') 
+                    |="login"
                 div(class='content-body', id='content')
                     h1(style='text-align: center; color:white') BLOG
                     #content-blog

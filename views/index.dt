@@ -22,3 +22,5 @@ html(lang='en')
                     |="github"
                 a(class='blog', href='/blog/') 
                     |="blog"
+                a(class='login', href='/login') 
+                    |="login"
