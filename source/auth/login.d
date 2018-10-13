@@ -4,6 +4,8 @@ import vibe.d;
 import db.mongo;
 import defs;
 import std.string;
+import std.conv;
+import auth.captcha;
 
 void login(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -15,21 +17,25 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
 	string username = req.form["username"];
     string password = req.form["password"];
 	res.terminateSession();
-    auto session = res.startSession();
     //have the username variable set in the session
-    session.set("username", username);
     bool userIsAdmin;
-    start();
-    if (checkPassword(username, password, userIsAdmin))
+    string captcha = req.form["g-recaptcha-response"];
+    if (submitCaptchaRequest(captcha))
     {
-        //do any kind of authentification here
-        if (userIsAdmin)
-            session.set("isAdmin", "true");
+        start();
+        if (checkPassword(username, password, userIsAdmin))
+        {
+            auto session = res.startSession();
+            session.set("username", username);
+            //do any kind of authentification here
+            if (userIsAdmin)
+                session.set("isAdmin", "true");
+            else
+                session.set("isAdmin", "false");
+        }
         else
-            session.set("isAdmin", "false");
+            res.terminateSession();
     }
-    else
-        res.terminateSession();
     res.redirect("/cp");
 }
 
@@ -41,16 +47,20 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     //start a session
 	string username = req.form["username"];
     string password = req.form["password"];
+    string captcha = req.form["g-recaptcha-response"];
     string isAdmin = text!bool(username == userAdmin);
-    start();
-    if (createUser(username, password, isAdmin) == false)
-        res.redirect("/l");
-    else
+    if (submitCaptchaRequest(captcha))
     {
-        auto session = res.startSession();
-        session.set("username", username);
-        session.set("isAdmin", isAdmin);
-        res.redirect("/cp");
+        start();
+        if (createUser(username, password, isAdmin) == false)
+            res.redirect("/l");
+        else
+        {
+            auto session = res.startSession();
+            session.set("username", username);
+            session.set("isAdmin", isAdmin);
+            res.redirect("/cp");
+        }
     }
 }
 

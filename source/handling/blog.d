@@ -7,6 +7,7 @@ import vibe.http.server;
 import vibe.textfilter.markdown;
 import blog.input;
 import std.string;
+import std.datetime;
 
 void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -35,7 +36,9 @@ void createBlogPost(HTTPServerRequest req, HTTPServerResponse res)
         string name = req.form["title"];
         string desc = req.form["description"];
         string content = req.form["body"];
-        string date = "null";
+        // string date = "null";
+        string date = Clock.currTime().toSimpleString();
+
         string link;
         foreach (c; name)
         {

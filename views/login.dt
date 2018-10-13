@@ -4,6 +4,7 @@ html(lang="en")
         meta(charset='UTF-8')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
         meta(http-equiv='X-UA-Compatible', content='ie=edge')
+        script(src='https://www.google.com/recaptcha/api.js')
         title LOGIN
     body
         link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
@@ -17,6 +18,8 @@ html(lang="en")
                     |="github"
                 a(class='blog', href='/blog/') 
                     |="blog"
+                a(class='login', href='/login') 
+                    |="login"
                 div(class='content-body', id='content')
                     h1(style='text-align: center; color:white') LOGIN
                     form(action='/login', method='post')
@@ -24,4 +27,11 @@ html(lang="en")
                         br
                         input(type='password', name='password', placeholder='password')
                         br
+                        div(class='g-recaptcha', data-sitekey='6LcVynQUAAAAALF-A280EUgtB4n3_vnGIswe0a7A', style='width: 304px; margin: 0 auto;')
+                        br
                         input(type='submit', value='submit')
+                    div(style='text-align:center')
+                        p
+                            |="Need an account?"
+                            a(class='create', href='/create') 
+                                |="create account"
