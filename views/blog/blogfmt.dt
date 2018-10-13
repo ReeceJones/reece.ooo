@@ -25,7 +25,7 @@ html(lang='en')
                     h3(style='text-align: center; color:white')
                         | #{description}
                     article
-                        b
+                        b(style='color: white')
                             | #{date}
                     br
-                    article!= content
+                    article(class='post', style='color: greenyellow')!= content

@@ -20,7 +20,7 @@ void login(HTTPServerRequest req, HTTPServerResponse res)
     //have the username variable set in the session
     bool userIsAdmin;
     string captcha = req.form["g-recaptcha-response"];
-    if (submitCaptchaRequest(captcha))
+    if (submitCaptchaRequest(captcha) || !useCaptcha)
     {
         start();
         if (checkPassword(username, password, userIsAdmin))
@@ -49,7 +49,7 @@ void create(HTTPServerRequest req, HTTPServerResponse res)
     string password = req.form["password"];
     string captcha = req.form["g-recaptcha-response"];
     string isAdmin = text!bool(username == userAdmin);
-    if (submitCaptchaRequest(captcha))
+    if (submitCaptchaRequest(captcha) || !useCaptcha)
     {
         start();
         if (createUser(username, password, isAdmin) == false)

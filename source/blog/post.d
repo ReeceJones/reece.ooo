@@ -8,6 +8,7 @@ struct BlogPost
     string desc;
     string content;
     string link;
+    string author;
 }
 
 /*

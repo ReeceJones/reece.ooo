@@ -19,12 +19,6 @@ shared static this()
 	//url router setting
 	auto router = new URLRouter;
 	//get routes
-	//rest api
-
-	/*
-		REST INTERFACE
-	*/
-	router.get("/blog.js", serveRestJSClient!BlogAPI(restSettings));
 
 	/*
 		STATIC PAGES
@@ -44,6 +38,7 @@ shared static this()
 	*/
 	router.get("/blog", &handleBlogIndex);
 	router.get("/blog/", &handleBlogIndex);
+	router.get("/blog/edit/*", &handleBlogEdit);
 	//any blog post is redirected to the handler
 	router.get("/blog/*", &handleBlogRequest);
 	//any control panel request is redirected to the handler
@@ -67,8 +62,6 @@ shared static this()
 	*/
 	router.post("/new_post", &createBlogPost);
 
-	//register the rest interface
-	router.registerRestInterface(new BlogAPI_impl, restSettings);
 
 	//server settings
 	auto settings = new HTTPServerSettings;

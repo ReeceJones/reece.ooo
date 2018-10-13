@@ -76,6 +76,28 @@ BlogPost[] getPostsFromID(int id)
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
+        t.author = cast(string)doc["author"];
+        //push into return array
+        ret ~= t;
+    }
+    return ret;
+}
+BlogPost[] getPostsFromUser(string username)
+{
+    auto q = blogs.find(Bson(["author" : Bson(username)]));
+    BlogPost[] ret;
+    foreach (i, doc; q.byPair)
+    {
+        //create a blogpost object using the query
+        BlogPost t;
+        //retrieve the items from the bson
+        t.date = cast(string)doc["date"];
+        t.name = cast(string)doc["name"];
+        t.id = cast(double)doc["id"];
+        t.desc = cast(string)doc["desc"];
+        t.content = cast(string)doc["content"];
+        t.link = cast(string)doc["link"];
+        t.author = cast(string)doc["author"];
         //push into return array
         ret ~= t;
     }
@@ -97,6 +119,7 @@ BlogPost[] getPostsFromName(string name)
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
+        t.author = cast(string)doc["author"];
         //push into return array
         ret ~= t;
     }
@@ -118,6 +141,7 @@ BlogPost[] getPostsFromLink(string link)
         t.desc = cast(string)doc["desc"];
         t.content = cast(string)doc["content"];
         t.link = cast(string)doc["link"];
+        t.author = cast(string)doc["author"];
         //push into return array
         ret ~= t;
     }
@@ -137,7 +161,28 @@ bool createPost(BlogPost bp)
         "id"   : Bson(cast(double)getBlogNum()),
         "desc" : Bson(bp.desc),
         "content" : Bson(bp.content),
-        "link" : Bson(bp.link)
+        "link" : Bson(bp.link),
+        "author" : Bson(bp.author)
+    ]));
+    return true;
+}
+
+bool editPost(BlogPost bp)
+{
+    bool exists = !blogs.find(Bson(["name" : Bson(bp.name)])).empty;
+    //could not create user
+    if (exists == false)
+        return false;
+    blogs.update(
+        Bson(["name" : Bson(bp.name)]),
+        Bson([
+        "date" : Bson(bp.date),
+        "name" : Bson(bp.name),
+        "id"   : Bson(cast(double)getBlogNum()),
+        "desc" : Bson(bp.desc),
+        "content" : Bson(bp.content),
+        "link" : Bson(bp.link),
+        "author" : Bson(bp.author)
     ]));
     return true;
 }

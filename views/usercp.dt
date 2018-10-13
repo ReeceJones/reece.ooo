@@ -21,12 +21,25 @@ html(lang='en')
                     |="login"
                 div(class='content-body')
                     h1(style='text-align: center; color:white') CONTROL PANEL
-                    - if (isAdmin == true)
+                    - if (isAdmin)
                         h4(style='text-align: center; color: red; left: 50%; positon: relative;') USER IS ADMIN
+                        br
+                    h4(style='text-align: center; color: white; left: 50%;')= username
                     br
                     - if (isAdmin)
                         a(href='/cp/post')
                             |="Create new post"
+                        h5(style='color: white') Existing Posts
+                        article(class='desc')
+                            - foreach(post; blogs)                         
+                                a(href="/blog/" ~ post.link)= post.name
+                                br
+                                p(style='color: white')= post.desc
+                                br
+                                a(href="/blog/edit/" ~ post.link, style='color: red') edit
+                                br
+                        
+                    br
                     br
                     a(href='/logout')
                         |="Logout"

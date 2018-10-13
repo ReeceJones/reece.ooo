@@ -7,6 +7,7 @@ string rootPath;
 string serverIP;
 string mongoIP;
 string userAdmin;
+bool useCaptcha;
 
 void loadConfig()
 {
@@ -15,4 +16,5 @@ void loadConfig()
     serverIP = conf.getValue!string("serverIP");
     mongoIP = "mongodb://" ~ conf.getValue!string("mongoIP");// ~ serverIP;
     userAdmin = conf.getValue!string("userAdmin");
+    useCaptcha = conf.getValue!bool("useCaptcha");
 }

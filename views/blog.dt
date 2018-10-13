@@ -23,8 +23,8 @@ html(lang="en")
                 div(class='content-body', id='content')
                     h1(style='text-align: center; color:white') BLOG
                     #content-blog
-                        article
+                        article(class='desc')
                             - foreach(post; blogs)
                                 a(href="/blog/" ~ post.link)= post.name
                                 br
-                                |= post.desc
+                                p(style='color: white')= post.desc
