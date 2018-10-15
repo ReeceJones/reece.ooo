@@ -8,6 +8,7 @@ import vibe.textfilter.markdown;
 import blog.input;
 import std.string;
 import std.datetime;
+import std.stdio;
 
 void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
 {
@@ -23,21 +24,28 @@ void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
 
 void handleBlogIndex(HTTPServerRequest req, HTTPServerResponse res)
 {
-    import blog.REST;
+    writeln("handling the memes");
     BlogPost[] blogs = getRecentBlogs();
+    writeln(blogs);
     res.render!("blog.dt", blogs);
 }
 
 void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
 {
+    writeln("handling blog edit request");
     if (!req.session)
         res.redirect("/login");
     else
     {
-        BlogPost post = getPostsFromLink(getNameFromURI(req.requestURI))[0];
+        writeln(req.requestURI);
+        string uri = req.requestURI[11..$];//req.requestURI.split("/")[1..$];
+        writeln(uri);
+        BlogPost post = getPostsFromLink(uri)[0];
+        writeln(post);
         string name = post.name;
         string description = post.desc;
-        string content = filterMarkdown(post.content);
+        string content = post.content;
+        writeln("rendering");
         res.render!("edit.dt", name, description, content);
     }
 }

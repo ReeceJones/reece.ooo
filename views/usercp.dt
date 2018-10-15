@@ -35,7 +35,6 @@ html(lang='en')
                                 a(href="/blog/" ~ post.link)= post.name
                                 br
                                 p(style='color: white')= post.desc
-                                br
                                 a(href="/blog/edit/" ~ post.link, style='color: red') edit
                                 br
                         

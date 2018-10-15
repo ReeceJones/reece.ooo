@@ -61,6 +61,7 @@ shared static this()
 		BLOG ROUTES
 	*/
 	router.post("/new_post", &createBlogPost);
+	router.post("/edit_post", &editBlogPost);
 
 
 	//server settings

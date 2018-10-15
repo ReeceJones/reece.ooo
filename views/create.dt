@@ -31,7 +31,7 @@ html(lang="en")
                         br
                         input(type='submit', value='submit')
                     div(style='text-align:center')
-                        p 
+                        p(class='account-help')
                             |="Already have an account?"
                             a(class='login', href='/login') 
                                 |="login"
