@@ -97,100 +97,24 @@ public BlogPost[] getPosts(ALIASES...)()
 
 BlogPost[] getPostsFromID(int id)
 {
-    pragma(msg, __traits(identifier, id));
     static assert(__traits(identifier, id) == "id");
-    // auto q = blogs.find(Bson(["id" : Bson(cast(double)id)]));
-    // BlogPost[] ret;
-    // foreach (i, doc; q.byPair)
-    // {
-    //     //create a blogpost object using the query
-    //     BlogPost t;
-    //     //retrieve the items from the bson
-    //     t.date = cast(string)doc["date"];
-    //     t.name = cast(string)doc["name"];
-    //     t.id = cast(double)doc["id"];
-    //     t.desc = cast(string)doc["desc"];
-    //     t.content = cast(string)doc["content"];
-    //     t.link = cast(string)doc["link"];
-    //     t.author = cast(string)doc["author"];
-    //     //push into return array
-    //     ret ~= t;
-    // }
-    // return ret;
     return getPosts!(id)();
 }
 BlogPost[] getPostsFromUser(string author)
 {
-    pragma(msg, __traits(identifier, author));
     static assert(__traits(identifier, author) == "author");
-    // auto q = blogs.find(Bson(["author" : Bson(username)]));
-    // BlogPost[] ret;
-    // foreach (i, doc; q.byPair)
-    // {
-    //     //create a blogpost object using the query
-    //     BlogPost t;
-    //     //retrieve the items from the bson
-    //     t.date = cast(string)doc["date"];
-    //     t.name = cast(string)doc["name"];
-    //     t.id = cast(double)doc["id"];
-    //     t.desc = cast(string)doc["desc"];
-    //     t.content = cast(string)doc["content"];
-    //     t.link = cast(string)doc["link"];
-    //     t.author = cast(string)doc["author"];
-    //     //push into return array
-    //     ret ~= t;
-    // }
-    // return ret;
     return getPosts!(author)();
 }
 
 BlogPost[] getPostsFromName(string name)
 {
-    pragma(msg, __traits(identifier, name));
     static assert(__traits(identifier, name) == "name");
-    // auto q = blogs.find(Bson(["name" : Bson(name)]));
-    //     BlogPost[] ret;
-    // foreach (i, doc; q.byPair)
-    // {
-    //     //create a blogpost object using the query
-    //     BlogPost t;
-    //     //retrieve the items from the bson
-    //     t.date = cast(string)doc["date"];
-    //     t.name = cast(string)doc["name"];
-    //     t.id = cast(double)doc["id"];
-    //     t.desc = cast(string)doc["desc"];
-    //     t.content = cast(string)doc["content"];
-    //     t.link = cast(string)doc["link"];
-    //     t.author = cast(string)doc["author"];
-    //     //push into return array
-    //     ret ~= t;
-    // }
-    // return ret;
     return getPosts!(name)();
 }
 
 BlogPost[] getPostsFromLink(string link)
 {
-    pragma(msg, __traits(identifier, link));
     static assert(__traits(identifier, link) == "link");
-    // auto q = blogs.find(Bson(["link" : Bson(link)]));
-    //     BlogPost[] ret;
-    // foreach (i, doc; q.byPair)
-    // {
-    //     //create a blogpost object using the query
-    //     BlogPost t;
-    //     //retrieve the items from the bson
-    //     t.date = cast(string)doc["date"];
-    //     t.name = cast(string)doc["name"];
-    //     t.id = cast(double)doc["id"];
-    //     t.desc = cast(string)doc["desc"];
-    //     t.content = cast(string)doc["content"];
-    //     t.link = cast(string)doc["link"];
-    //     t.author = cast(string)doc["author"];
-    //     //push into return array
-    //     ret ~= t;
-    // }
-    // return ret;
     return getPosts!(link)();
 }
 
