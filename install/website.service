@@ -3,7 +3,9 @@ Description=reece.ooo website
 After=auditd.service systemd-user-sessions.service time-sync.target
 
 [Service]
-User=root
+#User=root
+# for nginx, you need to change r/w/user permissions in /etc/vibe/*
+User=nginx
 TimeoutStartSec=0
 Type=simple
 KillMode=process
