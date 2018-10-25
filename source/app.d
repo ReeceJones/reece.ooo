@@ -39,6 +39,7 @@ shared static this()
 	router.get("/blog", &handleBlogIndex);
 	router.get("/blog/", &handleBlogIndex);
 	router.get("/blog/edit/*", &handleBlogEdit);
+	router.get("/blog/remove/*", &handleBlogRemove);
 	//any blog post is redirected to the handler
 	router.get("/blog/*", &handleBlogRequest);
 	//any control panel request is redirected to the handler

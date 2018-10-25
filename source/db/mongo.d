@@ -71,8 +71,7 @@ public BlogPost[] getPosts(ALIASES...)()
     Bson[string] query;
     static foreach(i; ALIASES.length.iota)
     {
-        string zz = __traits(identifier, ALIASES[i]);
-        query[zz] = Bson(ALIASES[i]);
+        query[__traits(identifier, ALIASES[i])] = Bson(ALIASES[i]);
     }
     auto r = blogs.find(query);
     // convert each Bson object to a BlogPost struct
@@ -139,15 +138,29 @@ bool createPost(BlogPost bp)
 
 bool editPost(BlogPost bp)
 {
-    import std.stdio;
     bool exists = !blogs.find(Bson(["name" : Bson(bp.name)])).empty;
-    //could not create user
-    writeln(exists);
     if (exists == false)
         return false;
     blogs.update(
         Bson(["name" : Bson(bp.name)]),
         Bson([
+        "date" : Bson(bp.date),
+        "name" : Bson(bp.name),
+        "id"   : Bson(cast(double)getBlogNum()),
+        "desc" : Bson(bp.desc),
+        "content" : Bson(bp.content),
+        "link" : Bson(bp.link),
+        "author" : Bson(bp.author)
+    ]));
+    return true;
+}
+
+bool removePost(BlogPost bp)
+{
+    bool exists = !blogs.find(Bson(["name" : Bson(bp.name)])).empty;
+    if (exists == false)
+        return false;
+    blogs.remove(Bson([
         "date" : Bson(bp.date),
         "name" : Bson(bp.name),
         "id"   : Bson(cast(double)getBlogNum()),

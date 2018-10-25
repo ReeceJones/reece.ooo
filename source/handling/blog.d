@@ -24,7 +24,6 @@ void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
 
 void handleBlogIndex(HTTPServerRequest req, HTTPServerResponse res)
 {
-    writeln("handling the memes");
     BlogPost[] blogs = getRecentBlogs();
     writeln(blogs);
     res.render!("blog.dt", blogs);
@@ -32,9 +31,8 @@ void handleBlogIndex(HTTPServerRequest req, HTTPServerResponse res)
 
 void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
 {
-    writeln("handling blog edit request");
-    if (!req.session)
-        res.redirect("/login");
+    if (!req.session && req.session.get!string("isAdmin") != "true")
+        res.redirect("/");
     else
     {
         writeln(req.requestURI);
@@ -48,6 +46,20 @@ void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
         writeln("rendering");
         res.render!("edit.dt", name, description, content);
     }
+}
+
+void handleBlogRemove(HTTPServerRequest req, HTTPServerResponse res)
+{
+    writeln("handling blog remove request");
+    if (!req.session && req.session.get!string("isAdmin") != "true")
+        res.redirect("/");
+    else
+    {
+        string uri = req.requestURI[11..$];//req.requestURI.split("/")[1..$];
+        BlogPost post = getPostsFromLink(uri)[0];
+        removePost(post);
+    }
+    res.redirect("/cp");
 }
 
 void createBlogPost(HTTPServerRequest req, HTTPServerResponse res)
