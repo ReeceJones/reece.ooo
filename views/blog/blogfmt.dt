@@ -9,6 +9,7 @@ html(lang='en')
         link(href='https://fonts.googleapis.com/css?family=IBM+Plex+Mono:200,700', rel='stylesheet')
         link(href='/style/animate.css', rel='stylesheet')
         link(href='/style/style.css', rel='stylesheet')
+        link(href='/style/bulma.min.css', rel='stylesheet')
         video(playsinline, autoplay, muted, loop, id='main-video')
             source(src='/video.mp4', type='video/mp4')
         main
@@ -19,7 +20,7 @@ html(lang='en')
                     |="blog"
                 a(class='login', href='/login') 
                     |="login"
-                div(class='content-body')
+                div(class='content-body container')
                     h1(style='text-align: center; color:white')
                         | #{name}
                     h3(style='text-align: center; color:white')

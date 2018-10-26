@@ -16,7 +16,7 @@ body {
     background-color: #111111;
     position: relative;
     top: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace !important;
     text-align: center;
 }
 .title {
@@ -38,7 +38,6 @@ body {
     top: 30%;
 }
 .content-body {
-    width: 30%;
     margin-right: auto;
     margin-left: auto;
     padding: auto;
@@ -49,10 +48,10 @@ body {
     color: greenyellow;
     font-size: 14px;
 }
-a {
-    color:limegreen;
-    font-size: 14px;
-    text-decoration: none;
+.container article {
+    font-family: 'IBM Plex Mono', monospace !important;
+    color: greenyellow !important;
+    font-size: 14px !important;
 }
 form {
     text-align: center;
@@ -69,6 +68,7 @@ form {
     z-index: -100;
     transform: translateX(-50%) translateY(-50%);
     background-size: cover; 
+    z-index: 0;
 }
 /* 
 div p {
@@ -87,4 +87,10 @@ article .desc{
     color: white;
     font-size: 14px;
     font-family: 'IBM Plex Mono', monospace;
+}
+
+a {
+    font-family: 'IBM Plex Mono', monospace !important;
+    color: greenyellow !important;
+    font-size: 14px !important;
 }
