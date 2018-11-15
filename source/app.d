@@ -2,11 +2,24 @@ import vibe.d;
 import handling.file;
 import handling.blog;
 import handling.cp;
-import blog.REST;
 import defs;
 import std.stdio;
 import std.functional;
 import auth.login;
+
+// renders a page staticly, but passes the auth parameter
+void semiStaticRender(string page)(HTTPServerRequest req, HTTPServerResponse res)
+{
+	writeln("semi-rendering!");
+	int auth;
+	if (req.session)
+		auth = 1;
+	if (req.session && req.session.get!string("isAdmin") == "true")
+		auth = 2;
+	writeln(auth);
+	// = req.session && req.session.get!string("isAdmin") == "true";
+	res.render!(page, auth);
+}
 
 shared static this()
 {
@@ -23,15 +36,16 @@ shared static this()
 	/*
 		STATIC PAGES
 	*/
-	router.get("/", staticTemplate!("index.dt"));
+	//router.get("/", staticTemplate!("index.dt"));
+	router.get("/", &semiStaticRender!("index.dt"));
 	// router.get("/blog", staticTemplate!("blog.dt"));
 	// router.get("/blog/", staticTemplate!("blog.dt"));
-	router.get("/login", staticTemplate!("login.dt"));
-	router.get("/login/", staticTemplate!("login.dt"));
-	router.get("/create", staticTemplate!("create.dt"));
-	router.get("/create/", staticTemplate!("create.dt"));
-	router.get("/cp/post", staticTemplate!("post.dt"));
-	router.get("/cp/post/", staticTemplate!("post.dt"));
+	router.get("/login", &semiStaticRender!("login.dt"));
+	router.get("/login/", &semiStaticRender!("login.dt"));
+	router.get("/create", &semiStaticRender!("create.dt"));
+	router.get("/create/", &semiStaticRender!("create.dt"));
+	router.get("/cp/post", &semiStaticRender!("post.dt"));
+	router.get("/cp/post/", &semiStaticRender!("post.dt"));
 
 	/*
 		HANDLERS
@@ -72,5 +86,6 @@ shared static this()
 	//for sessions
 	settings.sessionStore = new MemorySessionStore;
 
-listenHTTP(settings, router);
+	listenHTTP(settings, router);
 }
+

@@ -18,15 +18,25 @@ void handleBlogRequest(HTTPServerRequest req, HTTPServerResponse res)
     string description = post.desc;
     string content = filterMarkdown(post.content);
     string date = post.date;
+    int auth;
+	if (req.session)
+		auth = 1;
+	if (req.session && req.session.get!string("isAdmin") == "true")
+		auth = 2;
     res.render!("blog/blogfmt.dt",
-                name, description, content, date);
+                name, description, content, date, auth);
 }
 
 void handleBlogIndex(HTTPServerRequest req, HTTPServerResponse res)
 {
+    int auth;
+	if (req.session)
+		auth = 1;
+	if (req.session && req.session.get!string("isAdmin") == "true")
+		auth = 2;
     BlogPost[] blogs = getRecentBlogs();
     writeln(blogs);
-    res.render!("blog.dt", blogs);
+    res.render!("blog.dt", blogs, auth);
 }
 
 void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
@@ -35,6 +45,11 @@ void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
         res.redirect("/");
     else
     {
+        int auth;
+        if (req.session)
+            auth = 1;
+        if (req.session && req.session.get!string("isAdmin") == "true")
+		    auth = 2;
         writeln(req.requestURI);
         string uri = req.requestURI[11..$];//req.requestURI.split("/")[1..$];
         writeln(uri);
@@ -44,19 +59,20 @@ void handleBlogEdit(HTTPServerRequest req, HTTPServerResponse res)
         string description = post.desc;
         string content = post.content;
         writeln("rendering");
-        res.render!("edit.dt", name, description, content);
+        res.render!("edit.dt", name, description, content, auth);
     }
 }
 
 void handleBlogRemove(HTTPServerRequest req, HTTPServerResponse res)
 {
-    writeln("handling blog remove request");
-    if (!req.session && req.session.get!string("isAdmin") != "true")
+    if (!req.session || req.session.get!string("isAdmin") != "true")
         res.redirect("/");
     else
     {
-        string uri = req.requestURI[11..$];//req.requestURI.split("/")[1..$];
+        string uri = req.requestURI[13..$];
+        writeln(uri);
         BlogPost post = getPostsFromLink(uri)[0];
+        writeln(post);
         removePost(post);
     }
     res.redirect("/cp");

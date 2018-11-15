@@ -16,10 +16,21 @@ html(lang='en')
             div(class='content animated fadeInUp', style="top: 3%")
                 a(class='github', href='https://github.com/ReeceJones')
                     |="github"
+                span(style='color: white')
+                    |="|"
                 a(class='blog', href='/blog/') 
                     |="blog"
-                a(class='login', href='/login') 
-                    |="login"
+                span(style='color: white')
+                    |="|"
+                - if (auth == 2)
+                    a(class='control panel', href='/cp')
+                        |="control panel"
+                - else if (auth == 1)
+                    a(class='logout', href='/logout')
+                        |="logout"
+                - else
+                    a(class='login', href='/login')
+                        |="login"
                 div(class='content-body container')
                     h1(style='text-align: center; color:white') CREATE POST
                     form(action='/new_post', method='post')

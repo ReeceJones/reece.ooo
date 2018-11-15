@@ -11,6 +11,9 @@
 			"path": "../pz-config"
 		}
 	},
+	"subConfigurations": {
+		"vibe-d:tls": "openssl-1.1"
+	},
 	"description": "My personal website.",
 	"copyright": "Copyright © 2018, Reece Jones",
 	"license": "MIT",

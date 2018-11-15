@@ -161,13 +161,7 @@ bool removePost(BlogPost bp)
     if (exists == false)
         return false;
     blogs.remove(Bson([
-        "date" : Bson(bp.date),
-        "name" : Bson(bp.name),
-        "id"   : Bson(cast(double)getBlogNum()),
-        "desc" : Bson(bp.desc),
-        "content" : Bson(bp.content),
-        "link" : Bson(bp.link),
-        "author" : Bson(bp.author)
+        "name" : Bson(bp.name)
     ]));
     return true;
 }
